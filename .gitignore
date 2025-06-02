@@ -1,0 +1,6 @@
+data/generator/.yarn
+data/generator/node_modules
+data/generator/dist
+data/seed
+
+*.env
