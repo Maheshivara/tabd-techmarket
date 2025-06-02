@@ -1,0 +1,322 @@
+{
+  "version": "0.1",
+  "tables": [
+    {
+      "id": "fbb6e400-97e6-43a1-b1d7-c644906abbf0",
+      "tableName": "produto",
+      "fields": [
+        {
+          "id": "367b7fe6-e60c-4e94-bc5b-87327f40202d",
+          "PK": true,
+          "name": "_id",
+          "type": "objectId",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "b7a6fe96-fefe-4be1-b1c2-f39810488d38",
+          "PK": false,
+          "name": "nome",
+          "type": "string",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "35261e42-8750-4c80-9b2d-17696101159c",
+          "PK": false,
+          "name": "categoria",
+          "type": "object",
+          "children": [
+            {
+              "id": "6db89cc1-b40c-44f7-82a0-9b19a71791d2",
+              "PK": false,
+              "name": "_id",
+              "type": "objectId",
+              "isNN": true,
+              "children": []
+            },
+            {
+              "id": "2a026937-a4b2-4e44-ba1c-d1917da54b93",
+              "PK": false,
+              "name": "nome",
+              "type": "string",
+              "isNN": true,
+              "children": []
+            }
+          ],
+          "isNN": true
+        },
+        {
+          "id": "5653f926-fcf9-4df8-8cd3-fe77810e9e85",
+          "PK": false,
+          "name": "preco",
+          "type": "double",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "0e547949-a59a-4391-9856-646cd4f770a3",
+          "PK": false,
+          "name": "estoque",
+          "type": "int",
+          "isNN": true,
+          "children": []
+        }
+      ],
+      "x": 820.1500000000001,
+      "y": 664.7500000000002
+    },
+    {
+      "id": "1154ce8f-0306-4291-a157-848c366e6530",
+      "tableName": "cliente",
+      "fields": [
+        {
+          "id": "baf0001c-e40f-4e00-9076-a53ebddfefc2",
+          "PK": true,
+          "name": "_id",
+          "type": "objectId",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "f91a0896-cfa2-4b44-ba08-fcfb747021bb",
+          "PK": false,
+          "name": "cpf",
+          "type": "string",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "52224971-b176-477a-b5c5-640840e03d77",
+          "PK": false,
+          "name": "nome",
+          "type": "string",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "b31c1f86-5b87-48ad-b0ec-3c69c89a1316",
+          "PK": false,
+          "name": "email",
+          "type": "string",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "9b2b36fc-d24c-408a-a563-fc722ee6fa31",
+          "PK": false,
+          "name": "phone",
+          "type": "string",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "015b5fd0-48b1-43df-86bd-83b5feb47235",
+          "PK": false,
+          "name": "created_at",
+          "type": "timestamp",
+          "isNN": true,
+          "children": []
+        }
+      ],
+      "x": 220.60000000000002,
+      "y": 97.75
+    },
+    {
+      "id": "bac36c94-0408-4839-abef-ca06cac0d5dc",
+      "tableName": "pedido",
+      "fields": [
+        {
+          "id": "3eb6a5f7-1a9c-4ea3-b2b0-470c7d5bca25",
+          "PK": true,
+          "name": "_id",
+          "type": "objectId",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "9d2bf66c-4418-4d83-b402-d3707abb7e9d",
+          "PK": false,
+          "name": "cliente_id_fk",
+          "type": "objectId",
+          "children": [],
+          "isNN": true
+        },
+        {
+          "id": "c013d128-10e6-4d07-be4a-f4f3ad9e6a92",
+          "PK": false,
+          "name": "status",
+          "type": "object",
+          "isArray": true,
+          "children": [
+            {
+              "id": "ddc3a785-d185-4590-907a-e6b667ad3b36",
+              "PK": false,
+              "name": "_id",
+              "type": "objectId",
+              "isNN": true,
+              "children": []
+            },
+            {
+              "id": "fe35ec49-9015-4ab4-81fa-c3dba7b41578",
+              "PK": false,
+              "name": "nome",
+              "type": "string",
+              "isNN": true,
+              "children": []
+            },
+            {
+              "id": "d30862df-bed6-4226-b1ca-4506210f0bab",
+              "PK": false,
+              "name": "created_at",
+              "type": "timestamp",
+              "isNN": true,
+              "children": []
+            }
+          ],
+          "isNN": true
+        },
+        {
+          "id": "82ce6ff5-4cc3-4490-b3f5-bc97bb32a024",
+          "PK": false,
+          "name": "itens",
+          "type": "object",
+          "isArray": true,
+          "children": [
+            {
+              "id": "d68d3908-0a2c-41c6-8291-172a68b80e7b",
+              "PK": false,
+              "name": "produto_id_fk",
+              "type": "objectId",
+              "isNN": true,
+              "children": []
+            },
+            {
+              "id": "58f5b13e-b9bc-4fe2-8365-e209eab2bd38",
+              "PK": false,
+              "name": "quantidade",
+              "type": "int",
+              "isNN": true,
+              "children": []
+            },
+            {
+              "id": "b5562f2b-9f21-4512-bc67-dd48dfe7e3d0",
+              "PK": false,
+              "name": "preco_unitario",
+              "type": "double",
+              "isNN": true,
+              "children": []
+            }
+          ],
+          "isNN": true
+        },
+        {
+          "id": "1067d5c9-9f1d-4fc0-9903-c4a59277131a",
+          "PK": false,
+          "name": "total",
+          "type": "double",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "5b0457d2-bd84-4a65-8897-3a7e640ef677",
+          "PK": false,
+          "name": "created_at",
+          "type": "timestamp",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "1baa3a06-59e2-492d-8baa-05e4c061287b",
+          "PK": false,
+          "name": "pagamento",
+          "type": "object",
+          "children": [
+            {
+              "id": "2b621edb-7a61-4da6-8c53-db6ef37dc3b5",
+              "PK": false,
+              "name": "_id",
+              "type": "objectId",
+              "isNN": true,
+              "children": []
+            },
+            {
+              "id": "eddece80-ddcd-4b26-b196-51241bc89abd",
+              "PK": false,
+              "name": "tipo",
+              "type": "string",
+              "isNN": true,
+              "children": []
+            },
+            {
+              "id": "3283c70b-3ac4-409d-8479-14898ac54b97",
+              "PK": false,
+              "name": "created_at",
+              "type": "timestamp",
+              "isNN": true,
+              "children": []
+            },
+            {
+              "id": "89683072-35ac-4120-ae64-c12a3962b724",
+              "PK": false,
+              "name": "status",
+              "type": "object",
+              "isNN": true,
+              "isArray": true,
+              "children": [
+                {
+                  "id": "1352693c-3392-4d34-8bab-10668ae25ad7",
+                  "PK": false,
+                  "name": "_id",
+                  "type": "objectId",
+                  "isNN": true,
+                  "children": []
+                },
+                {
+                  "id": "88ce95e8-5c99-4fd9-80cd-db1113b84712",
+                  "PK": false,
+                  "name": "nome",
+                  "type": "string",
+                  "isNN": true,
+                  "children": []
+                },
+                {
+                  "id": "925a71eb-7ca6-4596-a6c7-df2abf494016",
+                  "PK": false,
+                  "name": "created_at",
+                  "type": "timestamp",
+                  "isNN": true,
+                  "children": []
+                }
+              ]
+            }
+          ],
+          "isNN": true,
+          "isArray": true
+        }
+      ],
+      "x": 800.1999999999999,
+      "y": 78.85
+    }
+  ],
+  "relations": [
+    {
+      "id": "d3e7cdc7-56b1-4bc8-9ce2-f03752063e61",
+      "type": "1:1",
+      "fromTableId": "bac36c94-0408-4839-abef-ca06cac0d5dc",
+      "fromFieldId": "9d2bf66c-4418-4d83-b402-d3707abb7e9d",
+      "toFieldId": "baf0001c-e40f-4e00-9076-a53ebddfefc2",
+      "toTableId": "1154ce8f-0306-4291-a157-848c366e6530"
+    },
+    {
+      "id": "48052d6b-ffcb-4fcc-aa7b-3220713ad792",
+      "type": "1:1",
+      "fromTableId": "bac36c94-0408-4839-abef-ca06cac0d5dc",
+      "fromFieldId": "d68d3908-0a2c-41c6-8291-172a68b80e7b",
+      "toFieldId": "367b7fe6-e60c-4e94-bc5b-87327f40202d",
+      "toTableId": "fbb6e400-97e6-43a1-b1d7-c644906abbf0"
+    }
+  ],
+  "selectedElementId": "bac36c94-0408-4839-abef-ca06cac0d5dc",
+  "isPristine": false
+}

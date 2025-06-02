@@ -1,0 +1,12 @@
+FROM golang:1.23-alpine3.20
+
+RUN go install -tags 'postgres,mongodb' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
+
+COPY ./postgres/migrations /migrations/postgres
+COPY ./mongo/migrations /migrations/mongodb
+
+COPY migrate.sh /migrations
+
+WORKDIR /migrations
+
+CMD ["/bin/sh", "migrate.sh"]

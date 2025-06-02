@@ -1,0 +1,80 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table cliente {
+  id uuid [pk, not null, default: `gen_random_uuid()`]
+  cpf varchar(11) [unique, not null]
+  nome varchar(50) [not null]
+  email varchar(255) [not null]
+  phone varchar(11) [not null]
+  created_at timestamp [default: `now()`, not null]
+}
+Table categoria_produto {
+  id uuid [pk, not null, default: `gen_random_uuid()`]
+  nome varchar(20)
+  code varchar(4) [not null, unique]
+}
+
+Table produto {
+  id uuid [pk, not null, default: `gen_random_uuid()`]
+  nome varchar(100) [not null]
+  preco float [not null]
+  categoria_id_fk uuid [ref: > categoria_produto.id, not null]
+  estoque int [not null, default: 0]
+}
+Table status_pedido {
+  id uuid [pk, not null, default: `gen_random_uuid()`]
+  nome varchar(20) [not null, unique]
+}
+
+Table pedido {
+  id uuid [pk, not null, default: `gen_random_uuid()`]
+  cliente_id_fk uuid [not null, ref: > cliente.id]
+  total float [not null]
+}
+
+Table pedido_historico {
+  pedido_id_fk uuid [not null, ref: > pedido.id]
+  status_id_fk uuid [not null, ref: > status_pedido.id]
+  created_at timestamp [not null, default: `now()`]
+  indexes {
+    (pedido_id_fk, status_id_fk) [pk]
+  }
+}
+
+Table item_pedido {
+  produto_id_fk uuid [not null, ref: > produto.id]
+  pedido_id_fk uuid [not null, ref: > pedido.id]
+  quantidade int [not null, default: 1]
+  preco_unitario float [not null]
+  indexes {
+    (produto_id_fk,pedido_id_fk) [pk]
+  }
+}
+
+Enum tipo_pagamento {
+  CARTAO
+  PIX
+  BOLETO
+}
+
+Table status_pagamento {
+  id uuid [pk, not null, default: `gen_random_uuid()`]
+  nome varchar(20) [unique,not null]
+}
+
+Table pagamento {
+  id uuid [pk, not null, default: `gen_random_uuid()`]
+  pedido_id_fk uuid [not null, ref: > pedido.id]
+  created_at timestamp [not null, default: `now()`]
+}
+
+Table pagamento_historico {
+  pagamento_id_fk uuid [not null, ref: > pagamento.id]
+  status_pagamento_id_fk uuid [not null, ref: > status_pagamento.id]
+  tipo tipo_pagamento [not null]
+  created_at timestamp [not null, default: `now()`]
+  indexes {
+    (pagamento_id_fk,status_pagamento_id_fk) [pk]
+  }
+}

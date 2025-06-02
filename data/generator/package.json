@@ -1,0 +1,17 @@
+{
+  "name": "generator",
+  "packageManager": "yarn@4.9.1",
+  "scripts": {
+    "build": "yarn tsc",
+    "dev": "yarn ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.8.0",
+    "fast-csv": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

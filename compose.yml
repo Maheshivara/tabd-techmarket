@@ -1,0 +1,61 @@
+services:
+  postgres:
+    build: 
+      dockerfile: ./docker/Dockerfile.postgresql
+      context: ./
+    container_name: techmarket_postgres
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $POSTGRES_USER" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - techmarket
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mongodb:
+    image: mongo:latest
+    container_name: techmarket_mongodb
+    env_file:
+      - .env
+    ports:
+      - ${MONGODB_PORT:-27017}:27017
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/ --quiet
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - techmarket
+    volumes:
+      - mongodb_data:/data/db
+  migrate:
+    build:
+      dockerfile: ./docker/Dockerfile.migrate
+      context: ./
+    container_name: techmarket_migrate
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+    restart: "no"
+    networks:
+      - techmarket
+
+volumes:
+  postgres_data:
+  mongodb_data:
+networks:
+  techmarket:
