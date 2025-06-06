@@ -17,6 +17,7 @@ COPY ./mongo/migrations/ /migrations/mongodb/
 
 COPY --from=generator /seedData/seed/mongo/ /migrations/mongodb/
 COPY --from=generator /seedData/seed/cassandra/ /migrations/cassandra/
+COPY --from=generator /seedData/seed/postgres/ /seedData/seed/postgres/
 
 COPY migrate.sh /migrations
 
