@@ -1,8 +1,6 @@
 services:
   postgres:
-    build: 
-      dockerfile: ./docker/Dockerfile.postgresql
-      context: ./
+    image: postgres:alpine
     container_name: techmarket_postgres
     env_file:
       - .env
@@ -19,6 +17,7 @@ services:
       - techmarket
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - postgres_seed:/migrations/seed
 
   mongodb:
     image: mongo:latest
@@ -76,10 +75,13 @@ services:
     restart: "no"
     networks:
       - techmarket
+    volumes:
+      - postgres_seed:/seedData/seed/postgres
 
 volumes:
   postgres_data:
   mongodb_data:
   cassandra_data:
+  postgres_seed:
 networks:
   techmarket:
