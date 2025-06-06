@@ -38,6 +38,27 @@ services:
       - techmarket
     volumes:
       - mongodb_data:/data/db
+
+  cassandra:
+    build:
+      dockerfile: ./docker/Dockerfile.cassandra
+      context: ./
+    container_name: techmarket_cassandra
+    env_file:
+      - .env
+    ports:
+      - ${CASSANDRA_PORT:-9042}:9042
+    healthcheck:
+      test: ["CMD", "cqlsh", "-e", "describe cluster"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - techmarket
+    volumes:
+      - cassandra_data:/var/lib/cassandra
   migrate:
     build:
       dockerfile: ./docker/Dockerfile.migrate
@@ -50,6 +71,8 @@ services:
         condition: service_healthy
       mongodb:
         condition: service_healthy
+      cassandra:
+        condition: service_healthy
     restart: "no"
     networks:
       - techmarket
@@ -57,5 +80,6 @@ services:
 volumes:
   postgres_data:
   mongodb_data:
+  cassandra_data:
 networks:
   techmarket:

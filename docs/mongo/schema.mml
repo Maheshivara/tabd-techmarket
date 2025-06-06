@@ -179,7 +179,7 @@
         {
           "id": "82ce6ff5-4cc3-4490-b3f5-bc97bb32a024",
           "PK": false,
-          "name": "itens",
+          "name": "items",
           "type": "object",
           "isArray": true,
           "children": [

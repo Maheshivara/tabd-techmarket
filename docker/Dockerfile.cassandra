@@ -1,0 +1,6 @@
+FROM cassandra:latest
+
+COPY ./cassandra/init.sh /cassandra-configure-init.sh
+RUN chmod +x /cassandra-configure-init.sh
+
+CMD [ "/bin/bash", "-c", "/cassandra-configure-init.sh && /docker-entrypoint.sh cassandra -f" ]
