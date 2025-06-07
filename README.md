@@ -2,6 +2,11 @@
 
 Atividade avaliativa solicitada pelo professor Ítalo na disciplina de tópicos Avançados de Bancos de Dados visando demonstrar as diferenças entre bancos Relacionais e noSQL.
 
+## Alunos
+
+- José Bezerra Pinheiro Neto
+- Luis Gabriel da Costa Silva
+
 ## Como rodar
 
 1. Copie o conteúdo do arquivo [./.env.example](./.env.example) para um novo arquivo nomeado `.env` neste mesmo diretório (realize as alterações que se vejam necessárias).
