@@ -384,8 +384,21 @@ WHERE id_cliente = b667d469-fc57-46e4-baeb-70c17998ed1e
 | 4   | 96    |
 | 5   | 197   |
 
+## Comparativo
+
+Comparando as médias de tempos (em ms) temos:
+
+|  Q  | Postgres | Mongo | Cassandra |
+| :-: | :------: | :---: | :-------: |
+|  1  |  167.6   | 423.8 |   172.8   |
+|  2  |  205.4   | 763.2 |   296.0   |
+|  3  |  176.4   | 349.8 |   163.8   |
+|  4  |  214.8   | 595.0 |   230.4   |
+|  5  |  208.4   | 860.8 |   213.8   |
+|  6  |  244.0   | 480.4 |   127.4   |
+
 ## Conclusão
 
-Por meio desses resultados é possível concluir que claramente o Cassandra possui mais desempenho quando se tratando de recuperar dados (principalmente pelo seu esquema ser orientado a consulta), seguido pelo Mongo em praticamente toda consulta que envolvia mais de 2 tabelas no esquema do Postgres.
+Por meio desses resultados é possível concluir que claramente o Cassandra possui mais desempenho quando se tratando de recuperar dados (principalmente pelo seu esquema ser orientado a consulta), seguido pelo Postgres, provavelmente em função de que o esquema que utilizamos no Mongo foi mais próximo de um banco de dados relacional do que orientado a consultas.
 
 É importante destacar que embora haja grande diferença do desempenho entre os bancos seja na escrita ou leitura, cada um deles possui um propósito diferente e deve ser escolhido conforme a necessidade do projeto, vale ressaltar que não se faz necessário se limitar a apenas um banco de dados, podendo facilmente usar vários estilos de representação de dados no mesmo projeto.
